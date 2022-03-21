@@ -1,0 +1,46 @@
+name: Misery was CI Testing
+
+on: [push, pull_request]
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.9', '3.10']
+
+    steps:
+      #----------------------------------------------
+      #       Checkout repo and set-up python
+      #----------------------------------------------
+      - name: Check out the repository
+        uses: actions/checkout@v1
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+          run: |
+            pip install --upgrade pip
+            python -m venv env
+            source env/bin/activate
+            echo "VIRTUAL ENV:" $VIRTUAL_ENV
+
+      #----------------------------------------------
+      #       Install & configure poetry
+      #----------------------------------------------
+      - name: Install Poetry in the Virtual Environment
+        run: |
+          pip install -U pip
+          pip install poetry
+
+      #----------------------------------------------
+      #       Install project dependencies
+      #----------------------------------------------
+      - name: Install Dependencies
+        run: poetry install
+
+      #----------------------------------------------
+      #         Testing with Flake8
+      #----------------------------------------------
+      - name: Run Tests With Flake
+        run: poetry run flake8
