@@ -2,7 +2,7 @@
 name = "misery-was-backend"
 version = "0.1.0"
 description = ""
-authors = ["Allan Mugabwa <email@example.com>", "Cephas Kingori <email@example.com>", "Jerim Kaura <email@example.com>", "Stephen Mwangi <st3v3n.mw@gmail.com>"]
+authors = ["Allan Mugabwa <mugabwaallanmas@gmail.com>", "Cephas Kingori <email@example.com>", "Jerim Kaura <email@example.com>", "Stephen Mwangi <st3v3n.mw@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -23,11 +23,10 @@ build-backend = "poetry.core.masonry.api"
 legacy_tox_ini = """
 [tox]
 isolated_build = True
-envlist = py37, py38, py39, py310, mypy
+envlist = py38, py39, py310, mypy
 
 [gh-actions]
 python = 
-	3.7: py37
 	3.8: py38
 	3.9: py39
 	3.10: py310, mypy
